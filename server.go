@@ -24,7 +24,7 @@ func main() {
 func createMessage(c *gin.Context) {
 	name := c.PostForm("name")
 	emojiLevel := c.DefaultPostForm("emoji_level", "4")
-	punctiuationLebel := c.DefaultPostForm("punctiuation_level", "1")
+	punctiuationLevel := c.DefaultPostForm("punctiuation_level", "1")
 
 	if num, err := strconv.Atoi(emojiLevel); err != nil || num < 1 || num > 10 {
 		emojiLevel = "4"
@@ -33,7 +33,7 @@ func createMessage(c *gin.Context) {
 	config := generator.Config{}
 	config.TargetName = name
 	config.EmojiNum, _ = strconv.Atoi(emojiLevel)
-	config.PunctiuationLebel, _ = strconv.Atoi(punctiuationLebel)
+	config.punctiuationLevel, _ = strconv.Atoi(punctiuationLevel)
 
 	result, err := generator.Start(config)
 	if err != nil {
@@ -43,7 +43,7 @@ func createMessage(c *gin.Context) {
 	c.JSON(200, gin.H{
 		"name":               name,
 		"emoji_level":        emojiLevel,
-		"punctiuation_level": punctiuationLebel,
+		"punctiuation_level": punctiuationLevel,
 		"message":            result,
 	})
 }
