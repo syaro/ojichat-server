@@ -26,7 +26,7 @@ func createMessage(c *gin.Context) {
 	emojiLevel := c.DefaultPostForm("emoji_level", "4")
 	punctiuationLebel := c.DefaultPostForm("punctiuation_level", "1")
 
-	if num, err := strconv.Atoi(emojiLevel); err != nil || num > 10 {
+	if num, err := strconv.Atoi(emojiLevel); err != nil || num < 1 || num > 10 {
 		emojiLevel = "4"
 	}
 
