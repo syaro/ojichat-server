@@ -33,7 +33,7 @@ func createMessage(c *gin.Context) {
 	config := generator.Config{}
 	config.TargetName = name
 	config.EmojiNum, _ = strconv.Atoi(emojiLevel)
-	config.punctiuationLevel, _ = strconv.Atoi(punctiuationLevel)
+	config.PunctiuationLebel, _ = strconv.Atoi(punctiuationLevel)
 
 	result, err := generator.Start(config)
 	if err != nil {
